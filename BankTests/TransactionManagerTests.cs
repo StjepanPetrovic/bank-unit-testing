@@ -101,5 +101,19 @@ namespace BankTests
             //asert
 
         }
+
+        [TestMethod]
+        public void TransferFunds_HR66GetIntoMinus_CorrectAmountInAccount()
+        {
+            // arange
+            UpraviteljTransakcijama transactionManager = new UpraviteljTransakcijama();
+            transactionManager.ApproveMinus("HR66");
+
+            //act
+            Transakcija transakcija = transactionManager.PrebaciSredstva("HR66", "HR55", 3500);
+
+            //asert
+            Assert.IsTrue(transakcija.Izvor.Stanje == -1500 && transakcija.Odrediste.Stanje == 11500);
+        }
     }
 }
