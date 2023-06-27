@@ -10,5 +10,6 @@ namespace Banka
     {
         public string IBAN { get; set; }
         public double Stanje { get; set; }
+        public bool approvedMinus { get; set; }
     }
 }

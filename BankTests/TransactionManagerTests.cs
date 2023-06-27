@@ -87,5 +87,19 @@ namespace BankTests
             //asert
             Assert.IsTrue(transakcija.Naplaceno <= transakcija.Iznos && transakcija.Naplaceno <= transakcija.Iznos);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidBankAccountException))]
+        public void ApproveMinus_ApprovingMinusToUnexistingAccount_ThrowException()
+        {
+            // arange
+            UpraviteljTransakcijama transactionManager = new UpraviteljTransakcijama();
+
+            //act
+            transactionManager.ApproveMinus("HR77");
+
+            //asert
+
+        }
     }
 }

@@ -61,6 +61,10 @@ namespace Banka
             {
                 t.Naplaceno = iznos;
             }
+            else if (izvor.approvedMinus == true)
+            {
+                t.Naplaceno = iznos;
+            }
             else
             {
                 t.Naplaceno = izvor.Stanje;
@@ -72,6 +76,22 @@ namespace Banka
             odrediste.Stanje = odrediste.Stanje + t.Naplaceno;
 
             return t;
+        }
+
+        public void ApproveMinus(string IBAN)
+        {
+            Racun racun = new Racun();
+            
+            racun = Racuni.FirstOrDefault(r => r.IBAN == IBAN);
+            
+            if (racun == null)
+            {
+                throw new InvalidBankAccountException();
+            }
+            else
+            {
+                racun.approvedMinus = true;
+            }
         }
     }
 }
